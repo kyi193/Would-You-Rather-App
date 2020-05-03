@@ -3,12 +3,12 @@ import { connect } from 'react-redux'
 
 class Dashboard extends Component {
   render() {
-    console.log(this.props)
+    const { userQuestionData } = this.props;
     return (
       <div>
         <ul className='dashboard-list'>
-          {this.props.unAnsweredQuestionIDs &&
-            (this.props.unAnsweredQuestionIDs.map((id) => (
+          {userQuestionData.unAnsweredQuestionIDs &&
+            (userQuestionData.unAnsweredQuestionIDs.map((id) => (
               <li key={id}>
                 <div>QUESTION ID: {id}</div>
               </li>
