@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import UQDash from './UQDash'
 
 class Dashboard extends Component {
   render() {
@@ -10,7 +11,7 @@ class Dashboard extends Component {
           {userQuestionData.unAnsweredQuestionIDs &&
             (userQuestionData.unAnsweredQuestionIDs.map((id) => (
               <li key={id}>
-                <div>QUESTION ID: {id}</div>
+                <UQDash id={id} />
               </li>
             )))}
         </ul>
@@ -35,7 +36,7 @@ function mapStateToProps({ questions, authedUser, users }) {
 
   return {
     unAnsweredQuestionIDs: unansweredQuestionIDs ? unansweredQuestionIDs : null,
-    answeredQuestionsIDs: answeredQuestionIDs ? answeredQuestionIDs : null
+    answeredQuestionsIDs: answeredQuestionIDs ? answeredQuestionIDs : null,
   }
 }
 
