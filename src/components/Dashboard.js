@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 class Dashboard extends Component {
   render() {
-    const { userQuestionData } = this.props;
+    const userQuestionData = this.props
     return (
       <div>
         <ul className='dashboard-list'>
