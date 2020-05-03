@@ -17,7 +17,7 @@ class UQDash extends Component {
     const avatarURL = users[author].avatarURL
     console.log(avatarURL)
     return (
-      <div>
+      <div className="unanswered-questionDash">
         <img
           src={avatarURL}
           alt={`Avatar of ${name}`}
@@ -26,9 +26,13 @@ class UQDash extends Component {
         <div>{name} Asks</div>
         <div>Would you rather...</div>
         <div>
-          {optionOne.text}
+          A. {optionOne.text}
           <br />
-          {optionTwo.text}
+          Or.....
+          <br />
+          B. {optionTwo.text}
+          <br />
+          <button>View Poll</button>
         </div>
       </div>
     )
