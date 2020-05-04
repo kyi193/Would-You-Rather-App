@@ -18,7 +18,7 @@ class Dashboard extends Component {
                 <AQDash id={id} />
               </li>
             )))} */}
-          <NewQuestion />
+          <NewQuestion authedUser={this.props.authedUser} />
         </ul>
       </div>
     )
@@ -42,6 +42,7 @@ function mapStateToProps({ questions, authedUser, users }) {
   return {
     unAnsweredQuestionIDs: unansweredQuestionIDs ? unansweredQuestionIDs : null,
     answeredQuestionIDs: answeredQuestionIDs ? answeredQuestionIDs : null,
+    authedUser
   }
 }
 
