@@ -16,7 +16,17 @@ class AQDash extends Component {
     const avatarURL = users[author].avatarURL
     const isOptionOne = question.optionOne.votes.includes(authedUser)
     const isOptionTwo = question.optionTwo.votes.includes(authedUser)
-    console.log(optionOne, optionTwo, isOptionOne, isOptionTwo)
+    const optionOneTotal = question.optionOne.votes
+      ? question.optionOne.votes.length
+      : 0
+    const optionTwoTotal = question.optionTwo.votes
+      ? question.optionOne.votes.length
+      : 0
+    const voteTotal = optionOneTotal + optionTwoTotal
+    const optionOnePercentage = ((optionOneTotal / voteTotal) * 100).toFixed(2)
+    const optionTwoPercentage = ((optionTwoTotal / voteTotal) * 100).toFixed(2)
+    console.log("Option 1 percentage: ", optionOnePercentage)
+    console.log("Option 2 percentage: ", optionTwoPercentage)
     if (isOptionOne) {
       return (
         <div className="unanswered-questionDash">
@@ -30,9 +40,13 @@ class AQDash extends Component {
           <div>
             A. {optionOne.text} - <span><strong>You chose this answer!</strong></span>
             <br />
+            {optionOneTotal} voted for this
           Or.....
           <br />
           B. {optionTwo.text}
+            <br />
+            <br />
+            {optionTwoTotal} voted for this({optionOnePercentage}%)
           </div>
         </div>
       )
@@ -49,9 +63,13 @@ class AQDash extends Component {
           <div>
             A. {optionOne.text}
             <br />
+            {optionOneTotal} voted for this
           Or.....
           <br />
           B. {optionTwo.text} - <span><strong>You chose this answer!</strong></span>
+            <br />
+            <br />
+            {optionTwoTotal} voted for this({optionTwoPercentage}%)
           </div>
         </div>
       )
