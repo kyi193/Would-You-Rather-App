@@ -5,6 +5,7 @@ class AQDash extends Component {
   render() {
     const { question } = this.props;
     const { users } = this.props;
+    const { authedUser } = this.props;
     if (question === null) {
       return <p>This question doesn't exist</p>
     }
@@ -13,6 +14,9 @@ class AQDash extends Component {
     } = question;
     const name = users[author].name
     const avatarURL = users[author].avatarURL
+    const isOptionOne = question.optionOne.votes.includes(authedUser)
+    const isOptionTwo = question.optionTwo.votes.includes(authedUser)
+    console.log(optionOne, optionTwo, isOptionOne, isOptionTwo)
     return (
       <div className="unanswered-questionDash">
         <img
@@ -28,8 +32,6 @@ class AQDash extends Component {
           Or.....
           <br />
           B. {optionTwo.text}
-          <br />
-          <button>View Poll</button>
         </div>
       </div>
     )
