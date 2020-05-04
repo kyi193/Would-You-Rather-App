@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import UQDash from './UQDash'
 import AQDash from './AQDash'
+import NewQuestion from './NewQuestion'
 
 class Dashboard extends Component {
   render() {
@@ -11,12 +12,13 @@ class Dashboard extends Component {
     return (
       <div>
         <ul className='dashboard-list'>
-          {userQuestionData.answeredQuestionIDs &&
+          {/* {userQuestionData.answeredQuestionIDs &&
             (userQuestionData.answeredQuestionIDs.map((id) => (
               <li key={id}>
                 <AQDash id={id} />
               </li>
-            )))}
+            )))} */}
+          <NewQuestion />
         </ul>
       </div>
     )
