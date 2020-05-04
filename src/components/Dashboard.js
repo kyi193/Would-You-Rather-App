@@ -1,17 +1,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import UQDash from './UQDash'
+import AQDash from './AQDash'
 
 class Dashboard extends Component {
   render() {
     const userQuestionData = this.props
+    console.log(userQuestionData.unAnsweredQuestionIDs)
     return (
       <div>
         <ul className='dashboard-list'>
-          {userQuestionData.unAnsweredQuestionIDs &&
-            (userQuestionData.unAnsweredQuestionIDs.map((id) => (
+          {userQuestionData.answeredQuestionIDs &&
+            (userQuestionData.answeredQuestionIDs.map((id) => (
               <li key={id}>
-                <UQDash id={id} />
+                <AQDash id={id} />
               </li>
             )))}
         </ul>
@@ -24,7 +26,7 @@ function mapStateToProps({ questions, authedUser, users }) {
   let unansweredQuestionIDs;
   let answeredQuestionIDs;
   if (users[authedUser]) {
-    answeredQuestionIDs = users[authedUser].answers
+    answeredQuestionIDs = Object.keys(users[authedUser].answers)
     const answeredQuestionKeys = Object.keys(users[authedUser].answers)
     const questionKeys = Object.keys(questions)
       .sort((a, b) => questions[b].timestamp - questions[a].timestamp)
@@ -36,7 +38,7 @@ function mapStateToProps({ questions, authedUser, users }) {
 
   return {
     unAnsweredQuestionIDs: unansweredQuestionIDs ? unansweredQuestionIDs : null,
-    answeredQuestionsIDs: answeredQuestionIDs ? answeredQuestionIDs : null,
+    answeredQuestionIDs: answeredQuestionIDs ? answeredQuestionIDs : null,
   }
 }
 
