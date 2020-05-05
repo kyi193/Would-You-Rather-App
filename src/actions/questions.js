@@ -4,6 +4,7 @@ export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
 export const ADD_QUESTION = 'ADD_QUESTION';
 export const ADD_USER_QUESTION = 'ADD_USER_QUESTION';
 export const SUBMIT_USER_ANSWER = 'SUBMIT_USER_ANSWER';
+export const SUBMIT_QUESTION_ANSWER = 'SUBMIT_QUESTION_ANSWER';
 
 
 export function receiveQuestions(questions) {
@@ -37,6 +38,15 @@ function submitUserAnswer(id, author, answer) {
   }
 }
 
+function submitQuestionAnswer(id, author, answer) {
+  return {
+    type: SUBMIT_QUESTION_ANSWER,
+    id,
+    author,
+    answer,
+  }
+}
+
 export function handleAddQuestion(optionOne, optionTwo, authedUser) {
   return (dispatch, getState) => {
     const { authedUser } = getState()
@@ -52,7 +62,6 @@ export function handleAddQuestion(optionOne, optionTwo, authedUser) {
 }
 
 export function handleSubmitAnswer(authedUser, id, answer) {
-  console.log('handleSubmit: ', answer)
   return (dispatch, getState) => {
     const { authedUser } = getState()
     return saveQuestionAnswer({
@@ -60,7 +69,8 @@ export function handleSubmitAnswer(authedUser, id, answer) {
       qid: id,
       answer,
     })
-      .then(() => dispatch(submitUserAnswer(id, authedUser, answer)))
+      .then(() => dispatch(submitUserAnswer(id, authedUser, answer),
+        dispatch(submitQuestionAnswer(id, authedUser, answer))))
 
   }
 }

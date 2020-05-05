@@ -2,8 +2,6 @@ import { RECEIVE_USERS } from '../actions/users';
 import { ADD_USER_QUESTION, SUBMIT_USER_ANSWER } from '../actions/questions'
 
 export default function users(state = {}, action) {
-  console.log(state[action.author])
-
   switch (action.type) {
     case RECEIVE_USERS:
       return {
