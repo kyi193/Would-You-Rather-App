@@ -2,11 +2,21 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import login_image from '../assets/login_image.jpg'
 import "bootstrap/dist//css/bootstrap.min.css";
-import Dropdown from 'react-bootstrap/Dropdown'
-import DropdownButton from 'react-bootstrap/DropdownButton'
 
 class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: ''
+    };
 
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    event.preventDefault()
+    this.setState({ value: event.target.value });
+  }
   render() {
     const { userList } = this.props
     console.log(userList)
@@ -23,12 +33,15 @@ class Login extends Component {
               className='login-image'
               src={login_image}
             />
-            <div>Sign In</div>
-            <DropdownButton id="dropdown-item-button" title="Dropdown button">
-              <Dropdown.Item as="button">Action</Dropdown.Item>
-              <Dropdown.Item as="button">Another action</Dropdown.Item>
-              <Dropdown.Item as="button">Something else</Dropdown.Item>
-            </DropdownButton>
+            <h1>Sign In</h1>
+            <div className="select">
+              <select name="format" id="format" onChange={this.handleChange}>
+                <option value disabled>Choose User</option>
+                {userList.map(user => (
+                  <option key={user} value={user}>{user}</option>
+                ))}
+              </select>
+            </div>
           </div>
         </div>
 
@@ -37,8 +50,11 @@ class Login extends Component {
   }
 }
 function mapStateToProps({ authedUser, users }) {
-  const userList = Object.keys(users)
-
+  let userList = [];
+  for (const user in users) {
+    userList.push(users[user].name)
+  }
+  console.log("USERS: ", userList)
   return {
     userList,
   }
