@@ -5,30 +5,19 @@ import "bootstrap/dist//css/bootstrap.min.css";
 import { loginUser } from '../actions/authedUser'
 
 class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: ''
-    };
 
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(event) {
-    event.preventDefault()
-    const value = event.target.value
-    console.log(value)
+  handleChange = (e) => {
+    e.preventDefault()
+    const authedUser = e.target.value
     const { dispatch } = this.props
-
-
-    dispatch(loginUser(value))
+    dispatch(loginUser(authedUser))
   }
   render() {
     const { userList, users } = this.props
     return (
       <div>
         <div className='login-title'>
-          Login <p>{this.state.value}</p>
+          Login
           <div>
             Welcome to the Would You Rather App!
             <div>
@@ -54,9 +43,8 @@ class Login extends Component {
     )
   }
 }
-function mapStateToProps({ authedUser, users }) {
+function mapStateToProps({ users }) {
   let userList = Object.keys(users)
-  console.log("USERS: ", userList)
   return {
     userList,
     users
