@@ -1,7 +1,8 @@
 import { RECEIVE_USERS } from '../actions/users';
 import { ADD_USER_QUESTION, SUBMIT_USER_ANSWER } from '../actions/questions'
-
+let newState;
 export default function users(state = {}, action) {
+
   switch (action.type) {
     case RECEIVE_USERS:
       return {
@@ -9,21 +10,13 @@ export default function users(state = {}, action) {
         ...action.users
       }
     case ADD_USER_QUESTION:
-      return {
-        ...state,
-        [action.author]: {
-          ...state[action.author],
-          questions: state[action.author].questions.concat(action.id)
-        }
-      }
+      newState = { ...state };
+      newState[action.author].questions.push(action.id);
+      return newState;
     case SUBMIT_USER_ANSWER:
-      return {
-        ...state,
-        [action.author]: {
-          ...state[action.author],
-          answers: Object.assign({}, state[action.author].answers, { [action.id]: action.answer })
-        }
-      }
+      newState = { ...state };
+      newState[action.author].answers[action.id] = action.answer;
+      return newState;
     default:
       return state;
   }
