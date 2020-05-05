@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import UQDash from './UQDash'
 import AQDash from './AQDash'
 import NewQuestion from './NewQuestion'
+import PollPage from './PollPage'
 
 class Dashboard extends Component {
   render() {
@@ -11,13 +12,14 @@ class Dashboard extends Component {
     return (
       <div>
         <ul className='dashboard-list'>
-          {/* {userQuestionData.answeredQuestionIDs &&
-            (userQuestionData.answeredQuestionIDs.map((id) => (
+          {userQuestionData.unAnsweredQuestionIDs &&
+            (userQuestionData.unAnsweredQuestionIDs.map((id) => (
               <li key={id}>
-                <AQDash id={id} />
+                <PollPage id={id} />
               </li>
-            )))} */}
-          <NewQuestion authedUser={this.props.authedUser} />
+            )))}
+          {/* <NewQuestion authedUser={this.props.authedUser} /> */}
+
         </ul>
       </div>
     )
