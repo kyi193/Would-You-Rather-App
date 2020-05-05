@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import login_image from '../assets/login_image.jpg'
 import "bootstrap/dist//css/bootstrap.min.css";
+import { loginUser } from '../actions/authedUser'
 
 class Login extends Component {
   constructor(props) {
@@ -15,15 +16,19 @@ class Login extends Component {
 
   handleChange(event) {
     event.preventDefault()
-    this.setState({ value: event.target.value });
+    const value = event.target.value
+    console.log(value)
+    const { dispatch } = this.props
+
+
+    dispatch(loginUser(value))
   }
   render() {
-    const { userList } = this.props
-    console.log(userList)
+    const { userList, users } = this.props
     return (
       <div>
         <div className='login-title'>
-          Login
+          Login <p>{this.state.value}</p>
           <div>
             Welcome to the Would You Rather App!
             <div>
@@ -36,9 +41,9 @@ class Login extends Component {
             <h1>Sign In</h1>
             <div className="select">
               <select name="format" id="format" onChange={this.handleChange}>
-                <option value disabled>Choose User</option>
-                {userList.map(user => (
-                  <option key={user} value={user}>{user}</option>
+                <option disabled defaultValue>Choose User</option>
+                {userList.map(person => (
+                  <option key={person} value={person}>{users[person].name}</option>
                 ))}
               </select>
             </div>
@@ -50,13 +55,11 @@ class Login extends Component {
   }
 }
 function mapStateToProps({ authedUser, users }) {
-  let userList = [];
-  for (const user in users) {
-    userList.push(users[user].name)
-  }
+  let userList = Object.keys(users)
   console.log("USERS: ", userList)
   return {
     userList,
+    users
   }
 }
 
