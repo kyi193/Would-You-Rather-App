@@ -12,6 +12,7 @@ export default function questions(state = {}, action) {
         ...state,
         [action.question.id]: action.question,
       }
+
     default:
       return state;
   }

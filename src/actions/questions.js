@@ -1,8 +1,9 @@
-import { saveQuestion } from '../utils/api'
+import { saveQuestion, saveQuestionAnswer } from '../utils/api'
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
 export const ADD_QUESTION = 'ADD_QUESTION';
 export const ADD_USER_QUESTION = 'ADD_USER_QUESTION';
+export const SUBMIT_USER_ANSWER = 'SUBMIT_USER_ANSWER';
 
 
 export function receiveQuestions(questions) {
@@ -27,6 +28,15 @@ function addUserQuestion(id, author) {
   }
 }
 
+function submitUserAnswer(id, author, answer) {
+  return {
+    type: SUBMIT_USER_ANSWER,
+    id,
+    author,
+    answer,
+  }
+}
+
 export function handleAddQuestion(optionOne, optionTwo, authedUser) {
   return (dispatch, getState) => {
     const { authedUser } = getState()
@@ -37,6 +47,20 @@ export function handleAddQuestion(optionOne, optionTwo, authedUser) {
     })
       .then((question) => dispatch(addUserQuestion(question.id, question.author),
         dispatch(addQuestion(question))))
+
+  }
+}
+
+export function handleSubmitAnswer(authedUser, id, answer) {
+  console.log('handleSubmit: ', answer)
+  return (dispatch, getState) => {
+    const { authedUser } = getState()
+    return saveQuestionAnswer({
+      authedUser,
+      qid: id,
+      answer,
+    })
+      .then(() => dispatch(submitUserAnswer(id, authedUser, answer)))
 
   }
 }
