@@ -2,6 +2,7 @@ import { saveQuestion } from '../utils/api'
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
 export const ADD_QUESTION = 'ADD_QUESTION';
+export const ADD_USER_QUESTION = 'ADD_USER_QUESTION';
 
 
 export function receiveQuestions(questions) {
@@ -18,6 +19,14 @@ function addQuestion(question) {
   }
 }
 
+function addUserQuestion(id, author) {
+  return {
+    type: ADD_USER_QUESTION,
+    id,
+    author
+  }
+}
+
 export function handleAddQuestion(optionOne, optionTwo, authedUser) {
   console.log("User: ", authedUser)
   return (dispatch, getState) => {
@@ -27,6 +36,8 @@ export function handleAddQuestion(optionOne, optionTwo, authedUser) {
       optionTwoText: optionTwo,
       author: authedUser
     })
-      .then((question) => dispatch(addQuestion(question)))
+      .then((question) => dispatch(addUserQuestion(question.id, question.author),
+        dispatch(addQuestion(question))))
+
   }
 }
