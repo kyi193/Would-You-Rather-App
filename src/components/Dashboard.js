@@ -5,22 +5,23 @@ import UQDash from './UQDash'
 import AQDash from './AQDash'
 import NewQuestion from './NewQuestion'
 import PollPage from './PollPage'
+import Login from './Login'
 
 class Dashboard extends Component {
   render() {
     const userQuestionData = this.props
     return (
       <div>
-        <ul className='dashboard-list'>
-          {userQuestionData.unAnsweredQuestionIDs &&
+        {/* <ul className='dashboard-list'> */}
+        {/* {userQuestionData.unAnsweredQuestionIDs &&
             (userQuestionData.unAnsweredQuestionIDs.map((id) => (
               <li key={id}>
                 <PollPage id={id} />
               </li>
-            )))}
-          {/* <NewQuestion authedUser={this.props.authedUser} /> */}
-
-        </ul>
+            )))} */}
+        {/* <NewQuestion authedUser={this.props.authedUser} /> */}
+        <Login />
+        {/* </ul> */}
       </div>
     )
   }
