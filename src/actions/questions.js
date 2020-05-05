@@ -28,7 +28,6 @@ function addUserQuestion(id, author) {
 }
 
 export function handleAddQuestion(optionOne, optionTwo, authedUser) {
-  console.log("User: ", authedUser)
   return (dispatch, getState) => {
     const { authedUser } = getState()
     return saveQuestion({

@@ -8,7 +8,6 @@ import NewQuestion from './NewQuestion'
 class Dashboard extends Component {
   render() {
     const userQuestionData = this.props
-    console.log(userQuestionData.unAnsweredQuestionIDs)
     return (
       <div>
         <ul className='dashboard-list'>
