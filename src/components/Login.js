@@ -5,12 +5,19 @@ import "bootstrap/dist//css/bootstrap.min.css";
 import { loginUser } from '../actions/authedUser'
 
 class Login extends Component {
-
+  state = {
+    authedUser: '',
+  }
   handleChange = (e) => {
     e.preventDefault()
-    const authedUser = e.target.value
+    this.setState(({
+      authedUser: e.target.value
+    }))
+  }
+  submitLogin = (e) => {
+    e.preventDefault()
     const { dispatch } = this.props
-    dispatch(loginUser(authedUser))
+    dispatch(loginUser(this.state.authedUser))
   }
   render() {
     const { userList, users } = this.props
@@ -35,6 +42,10 @@ class Login extends Component {
                   <option key={person} value={person}>{users[person].name}</option>
                 ))}
               </select>
+            </div>
+            <div className="button">
+              <button
+                onClick={this.submitLogin}>Sign In</button>
             </div>
           </div>
         </div>
