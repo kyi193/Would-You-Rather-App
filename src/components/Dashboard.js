@@ -21,7 +21,7 @@ class Dashboard extends Component {
           {userQuestionData.unAnsweredQuestionIDs &&
             (userQuestionData.unAnsweredQuestionIDs.map((id) => (
               <li key={id}>
-                <PollPage id={id} />
+                <UQDash id={id} />
               </li>
             )))}
         </ul>

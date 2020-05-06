@@ -55,8 +55,10 @@ export function handleAddQuestion(optionOne, optionTwo, authedUser) {
       optionTwoText: optionTwo,
       author: authedUser
     })
-      .then((question) => dispatch(addUserQuestion(question.id, question.author),
-        dispatch(addQuestion(question))))
+      .then((question) => {
+        dispatch(addUserQuestion(question.id, question.author))
+        dispatch(addQuestion(question))
+      })
 
   }
 }
@@ -69,8 +71,10 @@ export function handleSubmitAnswer(authedUser, id, answer) {
       qid: id,
       answer,
     })
-      .then(() => dispatch(submitUserAnswer(id, authedUser, answer),
-        dispatch(submitQuestionAnswer(id, authedUser, answer))))
+      .then(() => {
+        dispatch(submitUserAnswer(id, authedUser, answer))
+        dispatch(submitQuestionAnswer(id, authedUser, answer))
+      })
 
   }
 }

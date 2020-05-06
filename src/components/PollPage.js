@@ -14,7 +14,6 @@ class PollPage extends Component {
   }
 
   handleChange = (event) => {
-    console.log(event.target.value)
     this.setState({
       answer: event.target.value
     })
@@ -26,6 +25,10 @@ class PollPage extends Component {
     const { answer } = this.state
     const { dispatch, authedUser, id } = this.props
     dispatch(handleSubmitAnswer(authedUser, id, answer))
+      .then(() => {
+        this.props.history.push(`/answeredQuestion/${id}`)
+      })
+
     this.setState(() => ({
       answer: '',
     }))
@@ -33,7 +36,6 @@ class PollPage extends Component {
   render() {
     const { question } = this.props;
     const { users } = this.props;
-
     if (question === null) {
       return <p>This question doesn't exist</p>
     }
@@ -79,12 +81,14 @@ class PollPage extends Component {
   }
 }
 
-function mapStateToProps({ authedUser, users, questions }, { id }) {
+function mapStateToProps({ authedUser, users, questions }, props) {
+  const { id } = props.match.params
   const question = questions[id]
   return {
     authedUser,
     question,
-    users
+    users,
+    id
   };
 }
 

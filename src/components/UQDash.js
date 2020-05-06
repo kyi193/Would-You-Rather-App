@@ -1,10 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 class UQDash extends Component {
+  viewPoll = (e, id) => {
+    e.preventDefault()
+    console.log(id)
+    this.props.history.push(`/questions/${id}`);
+  }
   render() {
-    const { question } = this.props;
-    const { users } = this.props;
+    const { question, users, authedUser } = this.props;
 
     if (question === null) {
       return <p>This question doesn't exist</p>
@@ -14,7 +20,9 @@ class UQDash extends Component {
     } = question;
     const name = users[author].name
     const avatarURL = users[author].avatarURL
-    console.log(avatarURL)
+    if (authedUser === null) {
+      return <Redirect to='/login' />
+    }
     return (
       <div className="unanswered-questionDash">
         <img
@@ -31,7 +39,11 @@ class UQDash extends Component {
           <br />
           B. {optionTwo.text}
           <br />
-          <button>View Poll</button>
+          <Link to={`/questions/${id}`} className='question'>
+            <button>
+              View Poll
+            </button>
+          </Link>
         </div>
       </div>
     )
@@ -47,4 +59,4 @@ function mapStateToProps({ authedUser, users, questions }, { id }) {
   };
 }
 
-export default connect(mapStateToProps)(UQDash)
+export default withRouter(connect(mapStateToProps)(UQDash))

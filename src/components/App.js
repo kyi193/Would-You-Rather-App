@@ -7,6 +7,9 @@ import Login from './Login';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom'
 import Navbar from './Navbar'
 import NewQuestion from './NewQuestion';
+import PollPage from './PollPage';
+import UQDash from './UQDash';
+import AQDash from './AQDash';
 class App extends Component {
   componentDidMount() {
     this.props.dispatch(handleInitialData())
@@ -21,6 +24,9 @@ class App extends Component {
           <Route exact path='/dashboard' exact component={Dashboard} />
           <Route exact path='/login' exact component={Login} />
           <Route exact path='/add' exact component={NewQuestion} />
+          <Route exact path='/questions/:id' exact component={PollPage} />
+          <Route exact path='/unansweredQuestions' exact component={UQDash} />
+          <Route exact path='/answeredQuestion/:id' exact component={AQDash} />
         </Router>
       </React.Fragment>
     )

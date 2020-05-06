@@ -2,16 +2,16 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 class AQDash extends Component {
+
   render() {
-    const { question } = this.props;
-    const { users } = this.props;
-    const { authedUser } = this.props;
+    const { question, users, authedUser } = this.props;
     if (question === null) {
       return <p>This question doesn't exist</p>
     }
     const {
       author, id, optionOne, optionTwo, timestamp
     } = question;
+
     const name = users[author].name
     const avatarURL = users[author].avatarURL
     const isOptionOne = question.optionOne.votes.includes(authedUser)
@@ -25,8 +25,6 @@ class AQDash extends Component {
     const voteTotal = optionOneTotal + optionTwoTotal
     const optionOnePercentage = ((optionOneTotal / voteTotal) * 100).toFixed(2)
     const optionTwoPercentage = ((optionTwoTotal / voteTotal) * 100).toFixed(2)
-    console.log("Option 1 percentage: ", optionOnePercentage)
-    console.log("Option 2 percentage: ", optionTwoPercentage)
     if (isOptionOne) {
       return (
         <div className="unanswered-questionDash">
@@ -77,12 +75,15 @@ class AQDash extends Component {
   }
 }
 
-function mapStateToProps({ authedUser, users, questions }, { id }) {
+function mapStateToProps({ authedUser, users, questions }, props) {
+  const { id } = props.match.params
   const question = questions[id]
+  console.log(questions)
   return {
     authedUser,
     question,
-    users
+    users,
+    id,
   };
 }
 
