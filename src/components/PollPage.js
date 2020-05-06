@@ -36,6 +36,7 @@ class PollPage extends Component {
   }
   render() {
     const { question, users, authedUser } = this.props;
+    const { answer } = this.state;
     if (authedUser === null) {
       return <Redirect to='/login' />
     }
@@ -74,7 +75,9 @@ class PollPage extends Component {
             {optionTwo.text}
           </label>
           <br />
-          <button type="submit">Submit Answer</button>
+          <button
+            type="submit"
+            disabled={answer === ''}>Submit Answer</button>
         </form>
       </div>
     )
