@@ -29,7 +29,7 @@ class Navbar extends Component {
         <NavLink to='/leaderboard' exact activeClassName='active'>
           Leaderboard
         </NavLink>
-        <span>{users[authedUser].name}</span>
+        <span>Welcome back, {users[authedUser].name}!</span>
         <img src={avatarURL && avatarURL} />
         <button
           onClick={this.handleLogOut}>Logout</button>
