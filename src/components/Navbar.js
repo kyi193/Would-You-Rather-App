@@ -12,8 +12,11 @@ class Navbar extends Component {
   }
   render() {
     const { authedUser, users } = this.props;
+    let avatarURL
     if (!authedUser) {
       return <h5 style={{ color: "red" }}>User not logged in</h5>
+    } else {
+      avatarURL = users[authedUser].avatarURL
     }
     return (
       <div class="navbar">
@@ -24,7 +27,7 @@ class Navbar extends Component {
           Home
         </NavLink>
         <span>{users[authedUser].name}</span>
-
+        <img src={avatarURL && avatarURL} />
         <button
           onClick={this.handleLogOut}>Logout</button>
       </div>
