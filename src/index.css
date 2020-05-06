@@ -5,7 +5,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: #23b499;
+  background: #f0f8ff;
   font-family: 'Open Sans', sans-serif;
   color: #fff;
 }
@@ -18,9 +18,36 @@ body {
 }
 
 .navbar {
-  height: 120px;
+  float: left;
+  height: 150px;
   width: 100%;
   background-color: lightblue;
+}
+.navbarRight {
+  padding-right:15px;
+}
+
+.navbar a {
+  padding-left: 10px;
+  padding-right: 20px;
+  font-size: 24px
+}
+
+.navbarWelcome {
+  font-size: 24px;
+  padding-right: 25px;
+}
+.navbarAvatar {
+  padding: 10px;
+  border: 3px solid black;
+  border-radius: 50%;
+  background-color: #fafafa;
+}
+
+.navbarLogout {
+  padding-left: 20px;
+  padding-top: 35px;
+  float: right;
 }
 
 .dashboard {
@@ -29,6 +56,10 @@ body {
   height: 100%;
   width: 550px;
   padding: 12px 36px;
+}
+
+.tabtext {
+  font-size: 50px;
 }
 select {
   -webkit-appearance:none;
@@ -60,7 +91,7 @@ select::-ms-expand {
   overflow: hidden;
   border-radius: .25em;
 }
-.select::after {
+.select:after {
   content: '\25BC';
   position: absolute;
   top: 0;
@@ -81,10 +112,12 @@ select::-ms-expand {
 }
 
 .unanswered-questionDash {
-  padding: 12px;
-  border:1px solid black;
+  padding: 12px 12px 12px 12px;
   border-radius: 25px;
+
 }
+
+.answered-questionDash {}
 
 .unanswered-question {
   margin: auto;
@@ -99,14 +132,13 @@ select::-ms-expand {
 .tab-list-item {
   display: inline-block;
   list-style: none;
-  margin-bottom: -1px;
-  padding: 0.5rem 0.75rem;
+  padding: 15px 55px;
 }
 
 .tab-list-active {
   background-color: white;
   border: solid #ccc;
-  border-width: 1px 1px 0 1px;
+  border-width: 2px 2px 0 2px;
 }
 
 .unanswered-pollpage {
@@ -115,7 +147,8 @@ select::-ms-expand {
   height: 100%;
   width: 100%;
   width: 550px;
-  padding: 12px 36px;
+  padding-top: 200px;
+  padding-left: 100px;
 }
 
 .leaderboard {
@@ -123,7 +156,8 @@ select::-ms-expand {
   position: relative;
   height: 100%;
   width: 550px;
-  padding: 12px 36px;
+  padding-left: 50px;
+  padding-top: 170px;
 }
 .leaderboard-item {
   background-color:#add8e6;
@@ -167,18 +201,184 @@ select::-ms-expand {
   color:white;
 }
 
+.leaderboard-title {
+padding-left: 95px;
+}
+
 .newquestion {
   margin: auto;
   position: relative;
   height: 100%;
   width: 550px;
-  padding: 12px 36px;
+  padding-top: 200px;
+  padding-left: 100px;
+}
+
+.center {
+  border-bottom: 2px solid black;
 }
 
 .login-title {
-  margin: auto;
+  border: thick solid black;
+  padding: 10px 40px 40px 40px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -300px;
+  margin-left: -190px;
+  background: #D0D0D0;
+}
+
+.login-image {
+  top: 50%;
+  bottom: 50%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-left: 50px;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+}
+
+.login-signin {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: center;
+  background-color: #56A5EC;
+  color: white;
+}
+
+.login {
+  padding-top:2px;
+}
+.login-button {
   position: relative;
-  height: 100%;
-  width: 550px;
-  padding: 12px 36px;
+  display: flex;
+  width: 20em;
+  height: 3em;
+  line-height: 3;
+  background: #5c6664;
+  overflow: hidden;
+  border-radius: .25em;
+}
+.login-button-ready {
+  color:white;
+  position: relative;
+  display: flex;
+  width: 20em;
+  height: 3em;
+  line-height: 3;
+  background: #77DD77;
+  overflow: hidden;
+  border-radius: .25em;
+}
+
+.login-button span {
+  position: center;
+  text-align: center;
+  color: white;
+
+}
+
+.login-header {
+  background:#f8f3Ff;
+  padding:2px;
+  border: 1px solid black;
+  font-weight: bold;
+
+}
+
+.login-header p {
+  text-align: center;
+  font-weight: normal;
+}
+
+.login-ready {
+  padding-left:125px;
+  position: center;
+}
+
+.avatar {
+  float:left;
+  border: 2px solid black;
+}
+
+.avatar-wrapper {
+  float:left;
+  height: 200px;
+}
+.button-wrapper {
+  padding-top: 10px;
+}
+
+.uq-textbod {
+  padding-left: 100px;
+}
+
+.viewpoll {
+  display: inline-block;
+  padding: 0.3em 1.2em;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 2em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #ffffff;
+  background-color: #4eb5f1;
+  text-align: center;
+  transition: 0.2s;
+}
+
+.uqBox {
+  padding-bottom: 12px;
+}
+
+.uqName {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.uqWouldYouRather {
+  font-weight: bold;
+}
+
+#uqOr {
+  padding-top: 5px;
+  padding-left: 50px;
+}
+
+#aqOr {
+  padding-top: 5px;
+  padding-left: 100px;
+}
+
+.uqOption {
+  font-size: 18px;
+  width: 200px;
+  padding: 8px;
+  border: 2px solid black;
+}
+
+.aqBod {
+  padding-left: 100px;
+}
+
+.pollAnswers {
+  font-size: 24px;
+}
+
+.pollButton {
+  display: inline-block;
+  padding: 0.35em 1.2em;
+  border: 0.1em solid black;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: black;
+  text-align: center;
+  transition: all 0.2s
 }

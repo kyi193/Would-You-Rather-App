@@ -10,6 +10,7 @@ class Leaderboard extends Component {
     }
     return (
       <div className='leaderboard'>
+        <h1 className='leaderboard-title'>Leaderboard!</h1>
         {sortedUserList && (
           sortedUserList.map((user) => (
             <div className='leaderboard-item'>

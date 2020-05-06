@@ -47,36 +47,39 @@ class PollPage extends Component {
     const avatarURL = users[author].avatarURL
     return (
       <div className="unanswered-pollpage">
-        <img
-          src={avatarURL}
-          alt={`Avatar of ${name}`}
-          className='avatar'
-        />
-        <div>{name} Asks</div>
-        <div>Would you rather...</div>
+        <div className='avatar-wrapper'>
+          <img
+            src={avatarURL}
+            alt={`Avatar of ${name}`}
+            className='avatar'
+          />
+        </div>
+        <div className='uqName'><h3>{name} Asks:</h3></div>
+        <div className='uqWouldYouRather'><h2>Would you rather...</h2></div>
         <form onSubmit={this.handleSubmit}>
-          <label>
+          <label className='pollAnswers'>
             <input
               type='radio'
               name="poll"
               value='optionOne'
               onChange={this.handleChange}
             />
-            {optionOne.text}
+            {optionOne.text}?
           </label>
           <br />
-          <label>
+          <label className='pollAnswers'>
             <input
               type='radio'
               name="poll"
               value='optionTwo'
               onChange={this.handleChange}
             />
-            {optionTwo.text}
+            {optionTwo.text}?
           </label>
           <br />
           <button
             type="submit"
+            className='pollButton'
             disabled={answer === ''}>Submit Answer</button>
         </form>
       </div>

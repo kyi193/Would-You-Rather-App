@@ -20,13 +20,15 @@ class Dashboard extends Component {
             <ul className='dashboard-list'>
               {userQuestionData.unAnsweredQuestionIDs &&
                 (userQuestionData.unAnsweredQuestionIDs.map((id) => (
-                  <li key={id}>
+                  <li
+                    className='uqBox'
+                    key={id}>
                     <UQDash id={id} />
                   </li>
                 )))}
             </ul>
           </div>
-          <div label="Your Answers">
+          <div className='tabtext' label="Your Answers">
             <ul className='dashboard-list'>
               {userQuestionData.answeredQuestionIDs &&
                 (userQuestionData.answeredQuestionIDs.map((id) => (

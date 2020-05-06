@@ -20,19 +20,28 @@ class Navbar extends Component {
     }
     return (
       <div class="navbar">
-        <NavLink to='/dashboard' exact activeClassName='active'>
-          Home
+        <div className='navbarleft'>
+          <NavLink to='/dashboard' exact activeClassName='active'>
+            Home
         </NavLink>
-        <NavLink to='/add' exact activeClassName='active'>
-          New Question
+          <NavLink to='/add' exact activeClassName='active'>
+            New Question
         </NavLink>
-        <NavLink to='/leaderboard' exact activeClassName='active'>
-          Leaderboard
+          <NavLink to='/leaderboard' exact activeClassName='active'>
+            Leaderboard
         </NavLink>
-        <span>Welcome back, {users[authedUser].name}!</span>
-        <img src={avatarURL && avatarURL} />
-        <button
-          onClick={this.handleLogOut}>Logout</button>
+        </div>
+        <div className='navbarRight'>
+          <span className='navbarWelcome'>Welcome back, {users[authedUser].name}!</span>
+          <img
+            src={avatarURL && avatarURL}
+            className='navbarAvatar' />
+          <div className='navbarLogout'>
+            <button
+              className='logout-button'
+              onClick={this.handleLogOut}>Logout</button>
+          </div>
+        </div>
       </div>
     )
   }

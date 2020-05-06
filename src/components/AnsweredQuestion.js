@@ -31,21 +31,24 @@ const AnsweredQuestion = ({ question, users, authedUser }) => {
     return <Redirect to='/login' />
   }
   return (
-    <div className="unanswered-questionDash">
-      <img
-        src={avatarURL}
-        alt={`Avatar of ${name}`}
-        className='avatar'
-      />
-      <div>{name} Asks</div>
-      <div>Would you rather...</div>
-      <div>
+    <div className="answered-questionDash">
+      <div className='avatar-wrapper'>
+        <img
+          src={avatarURL}
+          alt={`Avatar of ${name}`}
+          className='avatar'
+        />
+      </div>
+      <div className='uqName'><h3>{name} Asks:</h3></div>
+      <div className='uqWouldYouRather'><h6>Would you rather...</h6></div>
+      <div className='aqBod'>
         A. {optionOne.text}{isOptionOne && selectedAnswerSpan}
         <br />
         {optionOneTotal} voted for this({optionOnePercentage}%)
             <br />
-          Or.....
-          <br />
+        <div id='aqOr'>
+          <h5>Or.....</h5>
+        </div>
           B. {optionTwo.text}{!isOptionOne && selectedAnswerSpan}
         <br />
         {optionTwoTotal} voted for this({optionTwoPercentage}%)

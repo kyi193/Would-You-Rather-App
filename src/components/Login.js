@@ -58,33 +58,40 @@ class Login extends Component {
       return <Redirect to='/dashboard' />
     }
     return (
-      <div>
-        <div className='login-title'>
-          Login
-          <div>
+      <div className='login-title'>
+        <div>
+          <div className='login-header'>
             Welcome to the Would You Rather App!
-            <div>
-              Please sign in to continue
-            </div>
-            <img
-              className='login-image'
-              src={login_image}
-            />
-            <h1>Sign In</h1>
-            <div className="select">
-              <select name="format" id="format" onChange={this.handleChange}>
-                <option value="" defaultValue>Choose User</option>
-                {userList.map((person, index) => (
-                  <option key={person} value={person}>{users[person].name}</option>
-                ))}
-              </select>
-            </div>
-            <div className="button">
-              <button
-                onClick={this.submitLogin}
-                disabled={selectedIndex === 0}>Sign In</button>
-            </div>
+            <br />
+            <p>Please sign in to continue</p>
           </div>
+          <img
+            className='login-image'
+            src={login_image}
+          />
+          <h1 className='login-signin'>Sign In</h1>
+          <div className="select">
+            <select name="format" id="format" onChange={this.handleChange}>
+              <option value="" defaultValue>Choose User...</option>
+              {userList.map((person, index) => (
+                <option key={person} value={person}>{users[person].name}</option>
+              ))}
+            </select>
+          </div>
+          {selectedIndex === 0 ? (
+            <div className='login'>
+              <button
+                className="login-button"
+                onClick={this.submitLogin}
+                disabled={selectedIndex === 0}><span>Must Choose User</span></button>
+            </div>
+          ) : (<div className='login'>
+            <button
+              className="login-button-ready"
+              onClick={this.submitLogin}
+              disabled={selectedIndex === 0}><span className='login-ready'>Log In!</span></button>
+          </div>)}
+
         </div>
 
       </div >
