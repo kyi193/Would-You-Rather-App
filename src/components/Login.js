@@ -5,7 +5,6 @@ import "bootstrap/dist//css/bootstrap.min.css";
 import { loginUser } from '../actions/authedUser'
 import { Redirect } from 'react-router-dom'
 
-
 class Login extends Component {
 
   constructor(props) {
@@ -16,35 +15,16 @@ class Login extends Component {
     }
   }
 
-  /* componentDidUpdate() {
-    No need to check if userList exists in props if we just keep a default index.
-    So, no weird checks to see if userList exists before setting the state.
-  }*/
-
   handleChange = (e) => {
     e.preventDefault()
-    // event.nativeEvent.target.selectedIndex is provided by the HTML
-    // framework, where the selected index is always tracked for <option>
-    // So, set state accordingly.
     this.setState(({
       selectedIndex: e.nativeEvent.target.selectedIndex
     }))
   }
   submitLogin = (e) => {
     e.preventDefault()
-    /* As a safety measure, we prevent this from happening if userList
-       does not exist, or if the list is empty.
-       Without this, user can swiftly click submit before props are retrieved
-       from the redux store..
-
-       1. This is kinda hacky
-       2. Not sure what the actual convention is but..
-       3. Prepare for a possible fix --- keep track of some isLoading
-          global prop in the redux store.
-
-    */
     if (!this.props.userList || this.props.userList.length === 0) {
-      console.log("Error, wait for me the load bro")
+      console.log("Error, user list not loaded yet")
       return;
     }
     const { dispatch, userList } = this.props

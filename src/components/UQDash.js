@@ -16,7 +16,7 @@ class UQDash extends Component {
       return <p>This question doesn't exist</p>
     }
     const {
-      author, id, optionOne, optionTwo, timestamp
+      author, id, optionOne, optionTwo
     } = question;
     const name = users[author].name
     const avatarURL = users[author].avatarURL

@@ -10,8 +10,6 @@ export function setAuthedUser(id) {
 }
 
 export function loginUser(id) {
-  console.log("loginUser ACTION")
-  console.log(id);
   return {
     type: LOGIN_USER,
     id,

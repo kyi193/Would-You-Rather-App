@@ -15,7 +15,7 @@ const AnsweredQuestion = ({ question, users, authedUser }) => {
     return <p>This question doesn't exist</p>
   }
   const {
-    author, id, optionOne, optionTwo, timestamp
+    author, optionOne, optionTwo
   } = question;
 
   const name = users[author].name

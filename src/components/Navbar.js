@@ -8,7 +8,6 @@ class Navbar extends Component {
     e.preventDefault()
     const { dispatch } = this.props
     dispatch(logoutUser())
-    // this.props.history.push("/login");
   }
   render() {
     const { authedUser, users } = this.props;

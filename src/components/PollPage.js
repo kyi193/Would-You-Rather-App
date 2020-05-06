@@ -41,7 +41,7 @@ class PollPage extends Component {
       return <Redirect to='/login' />
     }
     const {
-      author, id, optionOne, optionTwo, timestamp
+      author, optionOne, optionTwo
     } = question;
     const name = users[author].name
     const avatarURL = users[author].avatarURL
