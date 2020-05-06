@@ -76,5 +76,16 @@ select::-ms-expand {
 }
 
 .dashboard-list {
+  list-style-type: none;
   margin-top: 20px !important;
+}
+
+.unanswered-questionDash {
+  border:1px solid black;
+  border-radius: 25px;
+}
+
+.unanswered-question {
+  margin: auto;
+  position: center;
 }

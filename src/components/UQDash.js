@@ -25,25 +25,27 @@ class UQDash extends Component {
     }
     return (
       <div className="unanswered-questionDash">
-        <img
-          src={avatarURL}
-          alt={`Avatar of ${name}`}
-          className='avatar'
-        />
-        <div>{name} Asks</div>
-        <div>Would you rather...</div>
-        <div>
-          A. {optionOne.text}
-          <br />
+        <div className='unanswered-question'>
+          <img
+            src={avatarURL}
+            alt={`Avatar of ${name}`}
+            className='avatar'
+          />
+          <div>{name} Asks</div>
+          <div>Would you rather...</div>
+          <div>
+            A. {optionOne.text}
+            <br />
           Or.....
           <br />
           B. {optionTwo.text}
-          <br />
-          <Link to={`/questions/${id}`} className='question'>
-            <button>
-              View Poll
+            <br />
+            <Link to={`/questions/${id}`} className='question'>
+              <button>
+                View Poll
             </button>
-          </Link>
+            </Link>
+          </div>
         </div>
       </div>
     )
