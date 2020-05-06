@@ -1,30 +1,35 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
 class Leaderboard extends Component {
   render() {
-    const { sortedUserList, users } = this.props;
+    const { sortedUserList, users, authedUser } = this.props;
+    if (authedUser === null) {
+      return <Redirect to='/login' />
+    }
     return (
       <div className='leaderboard'>
         {sortedUserList && (
           sortedUserList.map((user) => (
-            <div>
-              <div>
-                <img src={users[user.name].avatarURL} />
-                <div>
-                  <span>{users[user.name].name}</span>
-                  <h5>Answered Questions: {user.answerCount}</h5>
-                  <h5>Created Questions: {user.questionCount}</h5>
-                </div>
-                <div>
-                  <div>
+            <div className='leaderboard-item'>
+              <img className="leaderboard-image" src={users[user.name].avatarURL} />
+              <div className="leaderboard-stats" >
+                <span className='leaderboard-name'><h3><strong>{users[user.name].name}</strong></h3></span>
+                <h6>Answered Questions: {user.answerCount}</h6>
+                <h6>Created Questions: {user.questionCount}</h6>
+              </div>
+              <div className="leaderboard-score-wrapper">
+                <div className="leaderboard-score" >
+                  <div className="leaderboard-score-title">
                     Score
                   </div>
                   <div>
-                    <h2>{user.answerCount + user.questionCount}</h2>
+                    <h1 className="leaderboard-totalscore">{user.answerCount + user.questionCount}</h1>
                   </div>
                 </div>
               </div>
+
 
             </div>
           ))
@@ -34,7 +39,7 @@ class Leaderboard extends Component {
   }
 }
 
-function mapStateToProps({ users }) {
+function mapStateToProps({ users, authedUser }) {
   const sortedUserList = [];
   for (const user in users) {
     const answerCount = Object.keys(users[user].answers).length
@@ -51,6 +56,7 @@ function mapStateToProps({ users }) {
   return {
     sortedUserList,
     users,
+    authedUser,
   }
 }
 export default connect(mapStateToProps)(Leaderboard)

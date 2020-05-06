@@ -41,11 +41,12 @@ class NewQuestion extends Component {
       return <Redirect to='/login' />
     }
     return (
-      <div>
+      <div className='newquestion'>
         <h3 className='center'>Create New Question</h3>
         <form className='new-tweet' onSubmit={this.handleSubmit}>
-          <textarea
-            placeholder="Enter Option One Text Here"
+          <input
+            style={{ width: "300px" }}
+            placeholder="Enter Option One Text Here..."
             value={optionOne}
             onChange={this.handleTextOneChange}
             className='textarea'
@@ -54,8 +55,9 @@ class NewQuestion extends Component {
           <br />
           Or
           <br />
-          <textarea
-            placeholder="Enter Option Two Text Here"
+          <input
+            style={{ width: "300px" }}
+            placeholder="Enter Option Two Text Here..."
             value={optionTwo}
             onChange={this.handleTextTwoChange}
             className='textarea'
