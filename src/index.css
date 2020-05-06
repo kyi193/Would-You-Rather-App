@@ -174,3 +174,11 @@ select::-ms-expand {
   width: 550px;
   padding: 12px 36px;
 }
+
+.login-title {
+  margin: auto;
+  position: relative;
+  height: 100%;
+  width: 550px;
+  padding: 12px 36px;
+}

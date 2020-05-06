@@ -14,7 +14,7 @@ class Navbar extends Component {
     const { authedUser, users } = this.props;
     let avatarURL
     if (!authedUser) {
-      return <h5 style={{ color: "red" }}>User not logged in</h5>
+      return <React.Fragment />
     } else {
       avatarURL = users[authedUser].avatarURL
     }
