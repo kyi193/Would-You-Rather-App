@@ -117,7 +117,9 @@ select::-ms-expand {
 
 }
 
-.answered-questionDash {}
+.answered-questionDash {
+  padding-bottom: 35px;
+}
 
 .unanswered-question {
   margin: auto;
