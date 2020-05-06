@@ -72,7 +72,7 @@ class Login extends Component {
             <h1>Sign In</h1>
             <div className="select">
               <select name="format" id="format" onChange={this.handleChange}>
-                <option value="" selected>Choose User</option>
+                <option value="" defaultValue>Choose User</option>
                 {userList.map((person, index) => (
                   <option key={person} value={person}>{users[person].name}</option>
                 ))}
