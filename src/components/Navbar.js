@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { logoutUser } from '../actions/authedUser'
+import { NavLink } from 'react-router-dom';
 
 class Navbar extends Component {
   handleLogOut = (e) => {
@@ -16,7 +17,11 @@ class Navbar extends Component {
     }
     return (
       <div>
-        {authedUser}
+        <NavLink to='/add' exact activeClassName='active'>
+          New Question
+        </NavLink>
+        <span>{authedUser}</span>
+
         <button
           onClick={this.handleLogOut}>Logout</button>
       </div>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleAddQuestion } from '../actions/questions'
+import { Redirect } from 'react-router-dom'
 
 class NewQuestion extends Component {
   state = {
@@ -31,10 +32,14 @@ class NewQuestion extends Component {
       optionOne: '',
       optionTwo: '',
     }))
+    this.props.history.push("/dashboard");
   }
   render() {
     const { optionOne, optionTwo } = this.state
-
+    const { authedUser } = this.props
+    if (authedUser === null) {
+      return <Redirect to='/login' />
+    }
     return (
       <div>
         <h3 className='center'>Create New Question</h3>
@@ -68,5 +73,9 @@ class NewQuestion extends Component {
     )
   }
 }
-
-export default connect()(NewQuestion)
+function mapStateToProps({ authedUser }) {
+  return {
+    authedUser,
+  }
+}
+export default connect(mapStateToProps)(NewQuestion)

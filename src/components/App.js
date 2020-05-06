@@ -6,6 +6,7 @@ import Dashboard from './Dashboard';
 import Login from './Login';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom'
 import Navbar from './Navbar'
+import NewQuestion from './NewQuestion';
 class App extends Component {
   componentDidMount() {
     this.props.dispatch(handleInitialData())
@@ -14,11 +15,12 @@ class App extends Component {
     const { authedUser } = this.props;
     return (
       <React.Fragment>
-        <Navbar />
         <Router>
+          <Navbar />
           <Route exact path='/' exact component={Login} />
           <Route exact path='/dashboard' exact component={Dashboard} />
           <Route exact path='/login' exact component={Login} />
+          <Route exact path='/add' exact component={NewQuestion} />
         </Router>
       </React.Fragment>
     )
