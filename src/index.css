@@ -109,6 +109,15 @@ select::-ms-expand {
   border-width: 1px 1px 0 1px;
 }
 
+.unanswered-pollpage {
+  margin: auto;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  width: 550px;
+  padding: 12px 36px;
+}
+
 .leaderboard {
   margin: auto;
   position: relative;
