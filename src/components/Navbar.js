@@ -16,7 +16,7 @@ class Navbar extends Component {
       return <h5 style={{ color: "red" }}>User not logged in</h5>
     }
     return (
-      <div>
+      <div class="navbar">
         <NavLink to='/add' exact activeClassName='active'>
           New Question
         </NavLink>

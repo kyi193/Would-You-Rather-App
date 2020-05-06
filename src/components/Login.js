@@ -6,19 +6,48 @@ import { loginUser } from '../actions/authedUser'
 import { Redirect } from 'react-router-dom'
 
 class Login extends Component {
-  state = {
-    loginUser: '',
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      selectedIndex: 0,
+      componentDidUpdateCount: 0
+    }
   }
+
+  /* componentDidUpdate() {
+    No need to check if userList exists in props if we just keep a default index.
+    So, no weird checks to see if userList exists before setting the state.
+  }*/
+
   handleChange = (e) => {
     e.preventDefault()
+    // event.nativeEvent.target.selectedIndex is provided by the HTML
+    // framework, where the selected index is always tracked for <option>
+    // So, set state accordingly.
     this.setState(({
-      loginUser: e.target.value
+      selectedIndex: e.nativeEvent.target.selectedIndex - 1
     }))
   }
   submitLogin = (e) => {
     e.preventDefault()
-    const { dispatch } = this.props
-    dispatch(loginUser(this.state.loginUser))
+    /* As a safety measure, we prevent this from happening if userList
+       does not exist, or if the list is empty.
+       Without this, user can swiftly click submit before props are retrieved
+       from the redux store..
+
+       1. This is kinda hacky
+       2. Not sure what the actual convention is but..
+       3. Prepare for a possible fix --- keep track of some isLoading
+          global prop in the redux store.
+
+    */
+    if (!this.props.userList || this.props.userList.length === 0) {
+      console.log("Error, wait for me the load bro")
+      return;
+    }
+    const { dispatch, userList } = this.props
+    dispatch(loginUser(userList[this.state.selectedIndex]))
     this.props.history.push("/dashboard");
   }
   render() {
@@ -43,7 +72,7 @@ class Login extends Component {
             <div className="select">
               <select name="format" id="format" onChange={this.handleChange}>
                 <option disabled defaultValue>Choose User</option>
-                {userList.map(person => (
+                {userList.map((person, index) => (
                   <option key={person} value={person}>{users[person].name}</option>
                 ))}
               </select>

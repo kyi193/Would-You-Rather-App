@@ -15,7 +15,7 @@ class Dashboard extends Component {
       return <Redirect to='/login' />
     }
     return (
-      <div>
+      <div class="dashboard">
         <h1>Dashboard</h1>
         <ul className='dashboard-list'>
           {userQuestionData.unAnsweredQuestionIDs &&

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleSubmitAnswer } from '../actions/questions'
+import { Redirect } from 'react-router-dom'
 class PollPage extends Component {
   constructor(props) {
     super(props)
@@ -34,10 +35,9 @@ class PollPage extends Component {
     }))
   }
   render() {
-    const { question } = this.props;
-    const { users } = this.props;
-    if (question === null) {
-      return <p>This question doesn't exist</p>
+    const { question, users, authedUser } = this.props;
+    if (authedUser === null) {
+      return <Redirect to='/login' />
     }
     const {
       author, id, optionOne, optionTwo, timestamp

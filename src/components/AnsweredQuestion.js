@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom'
 
 const AnsweredQuestion = ({ question, users, authedUser }) => {
   const tallyVotesForOption = (votes) => {
@@ -25,6 +26,9 @@ const AnsweredQuestion = ({ question, users, authedUser }) => {
   const optionOnePercentage = tallyVotesPercentage(optionOneTotal, voteTotal)
   const optionTwoPercentage = (100 - optionOnePercentage).toFixed(2)
   const selectedAnswerSpan = (<span>- <strong>You chose this answer!</strong></span>)
+  if (authedUser === null) {
+    return <Redirect to='/login' />
+  }
   return (
     <div className="unanswered-questionDash">
       <img
