@@ -20,6 +20,9 @@ class Navbar extends Component {
         <NavLink to='/add' exact activeClassName='active'>
           New Question
         </NavLink>
+        <NavLink to='/dashboard' exact activeClassName='active'>
+          Home
+        </NavLink>
         <span>{authedUser}</span>
 
         <button
