@@ -11,7 +11,7 @@ class Navbar extends Component {
     // this.props.history.push("/login");
   }
   render() {
-    const { authedUser } = this.props;
+    const { authedUser, users } = this.props;
     if (!authedUser) {
       return <h5 style={{ color: "red" }}>User not logged in</h5>
     }
@@ -23,7 +23,7 @@ class Navbar extends Component {
         <NavLink to='/dashboard' exact activeClassName='active'>
           Home
         </NavLink>
-        <span>{authedUser}</span>
+        <span>{users[authedUser].name}</span>
 
         <button
           onClick={this.handleLogOut}>Logout</button>
@@ -31,9 +31,10 @@ class Navbar extends Component {
     )
   }
 }
-function mapStateToProps({ authedUser }) {
+function mapStateToProps({ authedUser, users }) {
   return {
     authedUser,
+    users
   }
 }
 export default connect(mapStateToProps)(Navbar)
