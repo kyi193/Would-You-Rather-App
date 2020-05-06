@@ -3,24 +3,29 @@ import { connect } from 'react-redux'
 import login_image from '../assets/login_image.jpg'
 import "bootstrap/dist//css/bootstrap.min.css";
 import { loginUser } from '../actions/authedUser'
+import { Redirect } from 'react-router-dom'
 
 class Login extends Component {
   state = {
-    authedUser: '',
+    loginUser: '',
   }
   handleChange = (e) => {
     e.preventDefault()
     this.setState(({
-      authedUser: e.target.value
+      loginUser: e.target.value
     }))
   }
   submitLogin = (e) => {
     e.preventDefault()
     const { dispatch } = this.props
-    dispatch(loginUser(this.state.authedUser))
+    dispatch(loginUser(this.state.loginUser))
+    this.props.history.push("/dashboard");
   }
   render() {
-    const { userList, users } = this.props
+    const { userList, users, authedUser } = this.props
+    if (authedUser) {
+      return <Redirect to='/dashboard' />
+    }
     return (
       <div>
         <div className='login-title'>
@@ -54,11 +59,12 @@ class Login extends Component {
     )
   }
 }
-function mapStateToProps({ users }) {
+function mapStateToProps({ users, authedUser }) {
   let userList = Object.keys(users)
   return {
     userList,
-    users
+    users,
+    authedUser,
   }
 }
 

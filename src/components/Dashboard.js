@@ -6,26 +6,31 @@ import AQDash from './AQDash'
 import NewQuestion from './NewQuestion'
 import PollPage from './PollPage'
 import Login from './Login'
+import { Redirect } from 'react-router-dom'
 
 class Dashboard extends Component {
   render() {
     const userQuestionData = this.props
+    if (userQuestionData.authedUser === null) {
+      return <Redirect to='/login' />
+    }
     return (
       <div>
-        {/* <ul className='dashboard-list'> */}
-        {/* {userQuestionData.unAnsweredQuestionIDs &&
+        <h1>Dashboard</h1>
+        <ul className='dashboard-list'>
+          {userQuestionData.unAnsweredQuestionIDs &&
             (userQuestionData.unAnsweredQuestionIDs.map((id) => (
               <li key={id}>
                 <PollPage id={id} />
               </li>
-            )))} */}
-        {/* <NewQuestion authedUser={this.props.authedUser} /> */}
-        <Login />
-        {/* </ul> */}
+            )))}
+        </ul>
       </div>
     )
   }
 }
+
+
 
 function mapStateToProps({ questions, authedUser, users }) {
   let unansweredQuestionIDs;

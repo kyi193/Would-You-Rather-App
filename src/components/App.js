@@ -3,18 +3,30 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { handleInitialData } from '../actions/shared';
 import Dashboard from './Dashboard';
-
+import Login from './Login';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom'
+import Navbar from './Navbar'
 class App extends Component {
   componentDidMount() {
     this.props.dispatch(handleInitialData())
   }
   render() {
+    const { authedUser } = this.props;
     return (
-      <div>
-        <Dashboard />
-      </div>
+      <React.Fragment>
+        <Navbar />
+        <Router>
+          <Route exact path='/' exact component={Login} />
+          <Route exact path='/dashboard' exact component={Dashboard} />
+          <Route exact path='/login' exact component={Login} />
+        </Router>
+      </React.Fragment>
     )
   }
 }
-
-export default connect()(App)
+function mapStateToProps({ authedUser }) {
+  return {
+    authedUser
+  }
+}
+export default connect(mapStateToProps)(App)
