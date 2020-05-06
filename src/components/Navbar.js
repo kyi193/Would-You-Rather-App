@@ -20,11 +20,14 @@ class Navbar extends Component {
     }
     return (
       <div class="navbar">
+        <NavLink to='/dashboard' exact activeClassName='active'>
+          Home
+        </NavLink>
         <NavLink to='/add' exact activeClassName='active'>
           New Question
         </NavLink>
-        <NavLink to='/dashboard' exact activeClassName='active'>
-          Home
+        <NavLink to='/leaderboard' exact activeClassName='active'>
+          Leaderboard
         </NavLink>
         <span>{users[authedUser].name}</span>
         <img src={avatarURL && avatarURL} />

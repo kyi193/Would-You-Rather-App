@@ -10,6 +10,7 @@ import NewQuestion from './NewQuestion';
 import PollPage from './PollPage';
 import UQDash from './UQDash';
 import AQDash from './AQDash';
+import Leaderboard from './Leaderboard'
 class App extends Component {
   componentDidMount() {
     this.props.dispatch(handleInitialData())
@@ -27,6 +28,7 @@ class App extends Component {
           <Route exact path='/questions/:id' exact component={PollPage} />
           <Route exact path='/unansweredQuestions' exact component={UQDash} />
           <Route exact path='/answeredQuestion/:id' exact component={AQDash} />
+          <Route exact path='/leaderboard' exact component={Leaderboard} />
         </Router>
       </React.Fragment>
     )
