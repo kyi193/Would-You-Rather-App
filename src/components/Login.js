@@ -26,7 +26,7 @@ class Login extends Component {
     // framework, where the selected index is always tracked for <option>
     // So, set state accordingly.
     this.setState(({
-      selectedIndex: e.nativeEvent.target.selectedIndex - 1
+      selectedIndex: e.nativeEvent.target.selectedIndex
     }))
   }
   submitLogin = (e) => {
@@ -47,11 +47,12 @@ class Login extends Component {
       return;
     }
     const { dispatch, userList } = this.props
-    dispatch(loginUser(userList[this.state.selectedIndex]))
+    dispatch(loginUser(userList[this.state.selectedIndex - 1]))
     this.props.history.push("/dashboard");
   }
   render() {
     const { userList, users, authedUser } = this.props
+    const { selectedIndex } = this.state
     if (authedUser) {
       return <Redirect to='/dashboard' />
     }
@@ -71,7 +72,7 @@ class Login extends Component {
             <h1>Sign In</h1>
             <div className="select">
               <select name="format" id="format" onChange={this.handleChange}>
-                <option disabled defaultValue>Choose User</option>
+                <option value="" selected>Choose User</option>
                 {userList.map((person, index) => (
                   <option key={person} value={person}>{users[person].name}</option>
                 ))}
@@ -79,12 +80,13 @@ class Login extends Component {
             </div>
             <div className="button">
               <button
-                onClick={this.submitLogin}>Sign In</button>
+                onClick={this.submitLogin}
+                disabled={selectedIndex === 0}>Sign In</button>
             </div>
           </div>
         </div>
 
-      </div>
+      </div >
     )
   }
 }
