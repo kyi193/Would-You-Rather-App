@@ -2,29 +2,41 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import UQDash from './UQDash'
-import AQDash from './AQDash'
-import NewQuestion from './NewQuestion'
-import PollPage from './PollPage'
-import Login from './Login'
 import { Redirect } from 'react-router-dom'
+import Tabs from './Tabs'
+import AnsweredQuestion from './AnsweredQuestion'
 
 class Dashboard extends Component {
   render() {
     const userQuestionData = this.props
+    const { authedUser, users, questions } = this.props
     if (userQuestionData.authedUser === null) {
       return <Redirect to='/login' />
     }
     return (
       <div class="dashboard">
-        <h1>Dashboard</h1>
-        <ul className='dashboard-list'>
-          {userQuestionData.unAnsweredQuestionIDs &&
-            (userQuestionData.unAnsweredQuestionIDs.map((id) => (
-              <li key={id}>
-                <UQDash id={id} />
-              </li>
-            )))}
-        </ul>
+        <Tabs>
+          <div label="Would You Rather....">
+            <ul className='dashboard-list'>
+              {userQuestionData.unAnsweredQuestionIDs &&
+                (userQuestionData.unAnsweredQuestionIDs.map((id) => (
+                  <li key={id}>
+                    <UQDash id={id} />
+                  </li>
+                )))}
+            </ul>
+          </div>
+          <div label="Your Answers">
+            <ul className='dashboard-list'>
+              {userQuestionData.answeredQuestionIDs &&
+                (userQuestionData.answeredQuestionIDs.map((id) => (
+                  <li key={id}>
+                    <AnsweredQuestion question={questions[id]} users={users} authedUser={authedUser} />
+                  </li>
+                )))}
+            </ul>
+          </div>
+        </Tabs>
       </div>
     )
   }
@@ -49,7 +61,10 @@ function mapStateToProps({ questions, authedUser, users }) {
   return {
     unAnsweredQuestionIDs: unansweredQuestionIDs ? unansweredQuestionIDs : null,
     answeredQuestionIDs: answeredQuestionIDs ? answeredQuestionIDs : null,
-    authedUser
+    authedUser,
+    authedUser,
+    users,
+    questions,
   }
 }
 

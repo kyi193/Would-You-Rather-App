@@ -2,6 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom'
 
 const AnsweredQuestion = ({ question, users, authedUser }) => {
+  console.log(question, users, authedUser)
   const tallyVotesForOption = (votes) => {
     return votes ? votes.length : 0
   }
