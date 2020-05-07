@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom'
 
-const AnsweredQuestion = ({ question, users, authedUser }) => {
+const AnsweredQuestion = ({ question, users, authedUser, classTerm = null }) => {
   console.log(question, users, authedUser)
   const tallyVotesForOption = (votes) => {
     return votes ? votes.length : 0
@@ -30,8 +30,9 @@ const AnsweredQuestion = ({ question, users, authedUser }) => {
   if (authedUser === null) {
     return <Redirect to='/login' />
   }
+
   return (
-    <div className="answered-questionDash">
+    <div className={`answered-questionDash ${classTerm}`}>
       <div className='avatar-wrapper'>
         <img
           src={avatarURL}

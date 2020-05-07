@@ -7,7 +7,7 @@ class AQDash extends Component {
   render() {
     const { question, users, authedUser } = this.props
     return (
-      <AnsweredQuestion question={question} users={users} authedUser={authedUser} />
+      <AnsweredQuestion question={question} users={users} authedUser={authedUser} classTerm='singleAQ' />
     )
   }
 }
